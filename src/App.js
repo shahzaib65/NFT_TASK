@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import PopupModal from "./popup/PopupModal";
+import { Fragment, useRef, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+
 
 function App() {
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+
+  const openModal = () => {
+    setModalOpen(true);
+    console.log(isModalOpen)
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-full h-full">
+    <div className=" w-full flex justify-end">
+    <button className=" bg-[#DF4747] rounded-full text-white text-sm px-5 h-8 items-center m-5" onClick={openModal}>Open Popup</button>
+    </div>
+
+    <PopupModal isOpen={isModalOpen} onRequestClose={closeModal} />
+
     </div>
   );
 }
 
 export default App;
+
